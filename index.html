@@ -5,29 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GitHub Pages Example</title>
     <script>
-        function createButtonFromUrlParameter() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const param = urlParams.get('param');
-            const userAgent = navigator.userAgent;
-
-            if (param) {
-                const button = document.createElement('button');
-                button.textContent = param;
-
-                // Example of user-agent checking
-                if (/Chrome/.test(userAgent)) {
-                    button.style.backgroundColor = 'lightblue';
-                } else if (/Firefox/.test(userAgent)) {
-                    button.style.backgroundColor = 'lightcoral';
+        function createButtonBasedOnUserAgent() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            let buttonText = '';
+            
+            if (/micromessenger/.test(userAgent)) {  // 微信
+                if (/android/.test(userAgent)) {
+                    buttonText = 'ad123';
+                } else if (/iphone|ipad/.test(userAgent)) {
+                    buttonText = 'ap123';
                 } else {
-                    button.style.backgroundColor = 'lightgray';
+                    buttonText = 'wx123';
                 }
+            }
 
-                button.onclick = () => window.location.href = `https://www.baidu.com/${param}`;
+            if (buttonText) {
+                const button = document.createElement('button');
+                button.textContent = buttonText;
+                button.onclick = () => window.location.href = `https://www.baidu.com/${buttonText.slice(2)}`;
                 document.body.appendChild(button);
             }
         }
-        window.onload = createButtonFromUrlParameter;
+
+        window.onload = createButtonBasedOnUserAgent;
     </script>
 </head>
 <body>
