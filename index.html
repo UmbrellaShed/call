@@ -3,33 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GitHub Pages Example</title>
+    <title>GitHub Page</title>
     <script>
-        function createButtonBasedOnUserAgent() {
-            const userAgent = navigator.userAgent.toLowerCase();
-            let buttonText = '';
-            
-            if (/micromessenger/.test(userAgent)) {  // 微信
-                if (/android/.test(userAgent)) {
-                    buttonText = 'ad123';
-                } else if (/iphone|ipad/.test(userAgent)) {
-                    buttonText = 'ap123';
-                } else {
-                    buttonText = 'wx123';
-                }
-            }
+        window.onload = function() {
+            // 显示 User-Agent
+            document.getElementById('user-agent').innerText = navigator.userAgent;
 
-            if (buttonText) {
-                const button = document.createElement('button');
-                button.textContent = buttonText;
-                button.onclick = () => window.location.href = `https://www.baidu.com/${buttonText.slice(2)}`;
-                document.body.appendChild(button);
+            // 生成按钮
+            const button = document.createElement('button');
+            let buttonText = 'ad123';
+            if (navigator.userAgent.includes('iPhone') || navigator.userAgent.includes('iPad')) {
+                buttonText = 'ap123';
             }
-        }
+            button.innerText = buttonText;
 
-        window.onload = createButtonBasedOnUserAgent;
+            button.onclick = function() {
+                window.location.href = 'https://www.baidu.com/123';
+            };
+
+            document.getElementById('button-container').appendChild(button);
+        };
     </script>
 </head>
 <body>
+    <h1>Welcome to my GitHub Page</h1>
+    <p>User-Agent: <span id="user-agent"></span></p>
+    <div id="button-container"></div>
 </body>
 </html>
