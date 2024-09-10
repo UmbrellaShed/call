@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Pages Example</title>
+    <script>
+        function createButtonFromUrlParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const param = urlParams.get('param');
+            const userAgent = navigator.userAgent;
+
+            if (param) {
+                const button = document.createElement('button');
+                button.textContent = param;
+
+                // Example of user-agent checking
+                if (/Chrome/.test(userAgent)) {
+                    button.style.backgroundColor = 'lightblue';
+                } else if (/Firefox/.test(userAgent)) {
+                    button.style.backgroundColor = 'lightcoral';
+                } else {
+                    button.style.backgroundColor = 'lightgray';
+                }
+
+                button.onclick = () => window.location.href = `https://www.baidu.com/${param}`;
+                document.body.appendChild(button);
+            }
+        }
+        window.onload = createButtonFromUrlParameter;
+    </script>
+</head>
+<body>
+</body>
+</html>
